@@ -1,0 +1,130 @@
+
+<form [formGroup]="cardForm" novalidate>
+
+</form>
+<div class="row mt-2">
+  <div class="col-10 col-md-4 ml-4">
+
+    <div class="flip-container">
+      <div class="flipper" [ngClass]="cardSide ? '' : 'flip-action'">
+        <div class="front">
+          <div class="chip"><img src="../../../assets/icons/chip.png"></div>
+          <div class="logo"><img src="../../../assets/icons/flag/Mastercard-logo.png"></div>
+          <div class="number">{{ f.number.value || '-'}}</div>
+          <div class="name">{{ f.name.value || '-' | uppercase }}</div>
+          <div class="valid">{{ f.month.value || '-'}}/{{ f.year.value || '-'}}</div>
+          <div class="valid-name">VALID THRU</div>
+        </div>
+
+        <div class="back">
+          <div class="white-black"></div>
+          <span>Assinatura Autorizada</span>
+          <div class="white-stripe">
+            <label>{{ f.cvv.value || '-'}}</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-12 col-md-6 mt-2 ">
+    <form [formGroup]="cardForm" novalidate>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-9">
+          <input
+            class="form-control"
+            placeholder="Número do cartão"
+            [ngClass]="{ 'is-invalid': f.number.errors }"
+            formControlName="number"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <input
+            class="form-control"
+            placeholder="Mês"
+            [ngClass]="{ 'is-invalid': f.month.errors }"
+            formControlName="month"
+          >
+        </div>
+
+        <div class="form-group col-md-3">
+          <input
+            class="form-control"
+            placeholder="Ano"
+            [ngClass]="{ 'is-invalid': f.year.errors }"
+            formControlName="year"
+
+          >
+        </div>
+
+        <div class="form-group col-md-3">
+          <input
+            class="form-control"
+            placeholder="CVV"
+            (focus)="cardSide = !cardSide"
+            (blur)="cardSide = !cardSide"
+            [ngClass]="{ 'is-invalid': f.cvv.errors }"
+            formControlName="cvv"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <input
+            class="form-control"
+            placeholder="Nome impresso no cartão"
+            [ngClass]="{'is-invalid': f.name.errors }"
+            formControlName="name"
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-9">
+          <select
+              class="form-control"
+              [ngClass]="{'is-invalid': f.pay.errors }"
+              formControlName="pay"
+            >
+            <option disabled selected>Selecione o número de parcelas</option>
+            <option>1x 412,52 Sem juros</option>
+            <option>2x 206,26 Sem juros</option>
+            <option>3x 137,50 Sem juros</option>
+            <option>4x 103,13 Sem juros</option>
+            <option>5x 82,50 Sem juros</option>
+            <option>6x 68,75 com juros +2%</option>
+          </select>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="row mt-4">
+
+  <div class="col-9">
+    <div class="pay">
+      <p class="ml-4">Total:</p>
+      <p>R$: 412,52</p>
+    </div>
+
+  </div>
+  <div class="col-3 d-flex justify-content-end">
+    <button class="btn btn-secondary btn-md" translate>Pagar</button>
+  </div>
+</div>
+

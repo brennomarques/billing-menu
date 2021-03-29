@@ -1,0 +1,139 @@
+
+.flip-container {
+  width: 100%;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+/* .flip-container:hover .flipper{
+  transform: rotateY(180deg);
+} */
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-image: linear-gradient(to right, #70b2b0, #3a6795);
+  border-radius: 8px;
+}
+
+.flip-action {
+  transform: rotateY(180deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.chip img {
+  position: relative;
+  top: 70px;
+  left: 40px;
+  width: 35px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.logo img {
+  position: relative;
+  top: 140px;
+  right: -80%;
+  width: 15%;
+  height: auto;
+  opacity: 0.8;
+}
+
+.number {
+  position: relative;
+  left: 40px;
+  bottom: -25%;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.4rem;
+}
+
+.valid-name {
+  position: relative;
+  font-size: 0.4rem;
+  bottom: -5%;
+  right: -50%;
+}
+
+.valid {
+  position: relative;
+  font-size: 0.9rem;
+  bottom: -20%;
+  right: -50%;
+}
+
+.name {
+  position: relative;
+  font-size: 0.8rem;
+  left: 40px;
+  bottom: -40%;
+
+}
+
+.number, .name, .valid, .valid-name  {
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 2px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.card-label {
+  display: block;
+  padding-left: 25px;
+  color: #b2cbba;
+  font-size: 13px;
+}
+
+.card-name {
+  padding-left: 25px;
+  color: #fff;
+  line-height: 15px;
+}
+
+.white-black {
+  height: 40px;
+  margin-top: 15px;
+  background: black;
+}
+
+span{
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  left: 3%;
+  top: 10px;
+}
+
+.white-stripe {
+  position: relative;
+  height: 30px;
+  margin-top: 10px;
+  left: 3%;
+  width: 70%;
+  background:white;
+  border-radius: 2px;
+}
+
+label{
+  position: relative;
+  left: 85%;
+}
+
+.pay{
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: rgb(51, 51, 51);
+}

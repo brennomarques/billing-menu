@@ -1,0 +1,62 @@
+.i_list{
+  font-size: 45px;
+}
+
+.li__item{
+  color: rgb(102, 102, 102);
+  list-style: outside none none;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.confirmation{
+  color: #666;
+  margin: 2rem .5rem .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  justify-content: space-around;
+}
+.confirmation__item{
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1.5rem 0px;
+  color: rgb(51, 51, 51);
+}
+
+span{
+  font-size: 12px;
+  padding-top: 30px;
+  text-align: right;
+}
+
+.i__block{
+  max-width: 12px;
+  max-height: 12px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.important{
+  color: #666;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.important h3{
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.important li{
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+

@@ -1,0 +1,31 @@
+<div [ngSwitch]="cardBrand">
+
+  <ng-container *ngSwitchCase="'visa'">
+    <img src="../../../../assets/images/Cardbrand/Visa-01.svg">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'mastercard'">
+    <img src="../../../../assets/images/Cardbrand/Mastercard-01.svg">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'jcb'">
+    <img src="../../../../assets/images/Cardbrand/JCB-01.svg">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'amex'">
+    <img src="../../../../assets/images/Cardbrand/American-Express-01.svg">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'dinersclub'">
+    <img src="../../../../assets/images/Cardbrand/Diners-Club-01.svg">
+  </ng-container>
+
+  <!-- <ng-container *ngSwitchCase="'undefined'">
+    <img class="bb" src="../../../../assets/images/Cardbrand/cardbrand.svg">
+  </ng-container> -->
+
+  <ng-container *ngSwitchDefault>
+    <img src="../../../../assets/images/Cardbrand/cardbrand.svg">
+  </ng-container>
+
+</div>

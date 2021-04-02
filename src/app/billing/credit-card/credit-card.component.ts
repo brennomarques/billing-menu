@@ -1,29 +1,58 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CreditCardValidator } from 'angularx-cc-library';
+import { CreditCardValidators, CreditCard } from 'angular-cc-library';
+import { defer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-credit-card',
   templateUrl: './credit-card.component.html',
-  styleUrls: ['./credit-card.component.css']
+  styleUrls: ['./credit-card.component.css'],
 })
 export class CreditCardComponent implements OnInit {
 
   /**
-  * Data form card
-  */
-  cardForm: FormGroup;
+   * Data form card
+   */
+  public cardForm: FormGroup;
 
-  cardSide: boolean = true;
+  public cardSide: boolean = true;
 
-  cardinfo: object={};
+  public cardBrand: string;
+
 
   constructor(private formBuilder: FormBuilder) {
     this.createForm();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+
+  /**
+   * Get Card Banner
+   */
+  public type$ = defer(() => this.cardForm.get('number').valueChanges).pipe(
+    map((num: string) => CreditCard.cardType(num))
+  );
+
+  /**
+   *Show card banner
+   *
+   */
+  public showCardBanner(){
+    this.type$.subscribe((fleg)=>{
+      this.cardBrand = fleg
+    })
+
+  }
+
+  /**
+   *  Go To Next Field
+   */
+  public goToNextField(controlName: string, nextField: HTMLInputElement) {
+    if (this.cardForm.get(controlName)?.valid) {
+      nextField.focus();
+    }
   }
 
 
@@ -32,82 +61,55 @@ export class CreditCardComponent implements OnInit {
    *
    *  @return AbstractControl
    */
-   get f() {
+  get f() {
     return this.cardForm.controls;
   }
 
   /**
    * Form creation and validation configuration
    */
-   private createForm() {
+  private createForm() {
     this.cardForm = this.formBuilder.group({
+      number: ['', CreditCardValidators.validateCCNumber],
 
-      number: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.pattern('[0-9_-]*')
-        ])
+      month: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(2),
+          Validators.pattern('[0-9_-]*'),
+        ]),
       ],
-      month: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(2),
-        Validators.pattern('[0-9_-]*')
-        ])
+      year: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(2),
+          Validators.pattern('[0-9_-]*'),
+        ]),
       ],
-      year: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(2),
-        Validators.pattern('[0-9_-]*')
-        ])
-      ],
-      cvv: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(3),
-        Validators.pattern('[0-9_-]*')
-        ])
+      cvv: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3),
+          Validators.pattern('[0-9]*'),
+        ]),
       ],
 
-      name: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.pattern('[a-zA-Z _-]*')
-        ])
+      name: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.pattern('[a-zA-Z _-]*'),
+        ]),
       ],
-      pay: ['', Validators.required]
+      pay: ['', Validators.required],
     });
   }
-
-  ValidateCreditCardNumber() {
-    const visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-    const mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-
-    // if (visaRegEx.test(this.cardinfo.number)) {
-    //   this.isVisa = true;
-    //   this.isMastercard = false;
-    // } else if (mastercardRegEx.test(this.cardinfo.number)) {
-    //   this.isMastercard = true;
-    //   this.isVisa = false;
-    // } else {
-    //   this.isVisa = false;
-    //   this.isMastercard = false;
-    // }
-  }
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['cardForm']) {
-  //     console.log("tem mudança")
-  //     // if (
-  //     //   this.selected.cellphone !== null &&
-  //     //   this.selected.cellphone !== undefined &&
-  //     //   this.selected.cellphone.length > 11
-  //     // ) {
-  //     //   this.selected.cellphone = this.selected.cellphone.substr(3);
-  //     // }
-  //     // this.userForm.patchValue(this.selected);
-  //   }
-  // }
 
 }

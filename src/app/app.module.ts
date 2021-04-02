@@ -8,7 +8,9 @@ import { CreditCardComponent } from './billing/credit-card/credit-card.component
 import { PayPixComponent } from './billing/pay-pix/pay-pix.component';
 import { ReceiptComponent } from './billing/receipt/receipt.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { CardBrandComponent } from './billing/credit-card/card-brand/card-brand.component';
+
 // import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
@@ -18,13 +20,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BankSlipComponent,
     CreditCardComponent,
     PayPixComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    CardBrandComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    // CreditCardDirectivesModule
+    CreditCardDirectivesModule
     // NgxMaskModule.forRoot()
   ],
   providers: [],

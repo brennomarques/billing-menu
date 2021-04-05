@@ -10,6 +10,10 @@ import { ReceiptComponent } from './billing/receipt/receipt.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { CardBrandComponent } from './billing/credit-card/card-brand/card-brand.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeedBackComponent } from './feed-back/feed-back.component'
+import { feedbackNotification } from './core/services/feedback-notification.service'
+
 
 // import { NgxMaskModule } from 'ngx-mask'
 
@@ -21,16 +25,21 @@ import { CardBrandComponent } from './billing/credit-card/card-brand/card-brand.
     CreditCardComponent,
     PayPixComponent,
     ReceiptComponent,
-    CardBrandComponent
+    CardBrandComponent,
+    FeedBackComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     CreditCardDirectivesModule
     // NgxMaskModule.forRoot()
   ],
-  providers: [],
+  // exports: [
+  //   feedbackNotification
+  // ],
+  providers: [feedbackNotification],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,6 @@
 
-<form [formGroup]="cardForm" novalidate>
-
-</form>
-<div class="row mt-2">
+<div class="row mt-4">
+  <app-feed-back></app-feed-back>
   <div class="col-10 col-md-4 ml-4">
 
     <div class="flip-container">
@@ -160,6 +158,6 @@
 
   </div>
   <div class="col-3 d-flex justify-content-end">
-    <button class="btn btn-secondary btn-md"  translate>Pagar</button>
+    <button class="btn btn-secondary btn-md" (click)="showFeedBak()">Pagar</button>
   </div>
 </div>

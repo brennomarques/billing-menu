@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreditCardValidators, CreditCard } from 'angular-cc-library';
 import { defer } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { feedbackNotification } from 'src/app/core/services/feedback-notification.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -21,7 +22,7 @@ export class CreditCardComponent implements OnInit {
   public cardBrand: string;
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private feedbakNotification: feedbackNotification) {
     this.createForm();
   }
 
@@ -55,6 +56,10 @@ export class CreditCardComponent implements OnInit {
     }
   }
 
+  showFeedBak(){
+    this.feedbakNotification.notify(`Operação cancelar, tente novamente.`)
+  }
+
 
   /**
    *  Getter to access the form fields
@@ -78,7 +83,7 @@ export class CreditCardComponent implements OnInit {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(2),
-          Validators.pattern('[0-9_-]*'),
+          Validators.pattern('[0-9]*'),
         ]),
       ],
       year: [
@@ -87,7 +92,7 @@ export class CreditCardComponent implements OnInit {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(2),
-          Validators.pattern('[0-9_-]*'),
+          Validators.pattern('[0-9]*'),
         ]),
       ],
       cvv: [
